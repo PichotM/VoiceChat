@@ -6,6 +6,7 @@ local VoiceMode = {
 }
 
 local Voice = {}
+Voice.Listeners = {}
 Voice.Mode = 2
 Voice.distance = 8.0
 Voice.onlyVehicle = false
