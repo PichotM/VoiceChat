@@ -14,6 +14,16 @@ local function SendVoiceToPlayer(intPlayer, boolSend)
 	Citizen.InvokeNative(0x97DD4C5944CC2E6A, intPlayer, boolSend)
 end
 
+local function GetPlayers()
+	local players = {}
+	for i = 0, 64 do
+		if NetworkIsPlayerActive(i) then
+			players[#players + 1] = i
+		end
+	end
+	return players
+end
+
 function Voice:UpdateVoices()
 	local ped = GetPlayerPed(-1)
 	local InVeh = IsPedInAnyVehicle(ped)
@@ -127,16 +137,6 @@ local function UpdateVocalMode(mode)
 end
 
 Citizen.CreateThread(function()
-	local function GetPlayers()
-		local players = {}
-		for i = 0, 64 do
-			if NetworkIsPlayerActive(i) then
-				players[#players + 1] = i
-			end
-		end
-		return players
-	end
-
 	while true do
 		Citizen.Wait(0)
 
