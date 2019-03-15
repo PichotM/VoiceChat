@@ -90,7 +90,6 @@ end
 local shouldReset = false
 Citizen.CreateThread(function()
 	for i = 0, 63 do SendVoiceToPlayer(i, false) end
-	NetworkSetTalkerProximity(-1000.0)
 
 	while true do
 		Citizen.Wait(300)
@@ -108,7 +107,8 @@ Citizen.CreateThread(function()
 				SendVoiceToPlayer(i, false)
 			end
 		end
-
+		
+		NetworkSetTalkerProximity(-1000.0)
 		Voice:UpdateVoices()
 	end
 end)
